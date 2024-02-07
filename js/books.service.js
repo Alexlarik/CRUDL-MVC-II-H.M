@@ -1,19 +1,36 @@
 'use strict'
 
+var gBooks
 const STORAGE_KEY = 'booksDB'
-var gBooks = loadFromStorage(STORAGE_KEY) || createBooks()
 
-function createBooks() {
-    const books = [
-        { id: 'b101', title: 'Nosferatu', price: 120, imgUrl: '' },
-        { id: 'b102', title: 'The Abyss', price: 80, imgUrl: '' },
-        { id: 'b103', title: 'Odyssey', price: 100, imgUrl: '' }
-    ]
-
-    saveToStorage(STORAGE_KEY, books)
-    return books
+function _createBook(title, price, rating, img) {
+    const book = {
+        id: 'b' + Date.now() % 1000,
+        title: title,
+        price: price,
+        rating: rating,
+        img: img
+    }
+    return book
 
 }
+function _createBooks() {
+    gBooks = loadFromStorage(STORAGE_KEY)
+    if (!gBooks || !gBooks.length) {
+        gBooks = [
+            _createBook('Nosferatu', 120, 3, 'imgUrl'),
+            _createBook('The Abyss', 100, 3, 'imgUrl'),
+            _createBook('Odyssey', 80, 3, 'imgUrl')
+        ]
+    }
+    _saveBooks()
+
+}
+
+function _saveBooks() {
+    saveToStorage(STORAGE_KEY, gBooks)
+}
+
 
 function getBooks() {
     return gBooks
@@ -25,13 +42,10 @@ function removeBook(bookId) {
 }
 
 function addBook(title, price) {
-    const toRead = {
-        id: 'b' + Date.now() % 1000,
-        title,
-        price: price,
-        imgUrl: ''
-    }
-    gBooks.unshift(toRead)
+    gBooks.unshift(_createBook(title, price))
+
+    _saveBooks()
+
 }
 
 function updatePrice(bookId, newPrice) {
@@ -45,3 +59,8 @@ function readBook(bookId) {
     return findBook
 
 }
+// const toRead = {
+//     id: 'b' + Date.now() % 1000,
+//     title,
+//     price: price,
+//     imgUrl: ''

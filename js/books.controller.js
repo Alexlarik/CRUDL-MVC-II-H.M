@@ -1,28 +1,31 @@
 'use strict'
 
 function onInit() {
+    _createBooks()
     renderBooks()
 }
 
 function renderBooks() {
     const elBooks = document.querySelector('.book-list')
     const books = getBooks()
-    const strHTMLs = `
-    <tr>
-        <th class="header">Title</th>
-        <th class="header">Price</th>
-        <th class="header">Actions</th>
-    </tr>
-    ` + books.map(book => `
-    <tr class="table-row">
-        <td>${book.title}</td>
-        <td>${book.price}</td>
-        <td class="actions">
-        <button class="read" onClick="onReadBook('${book.id}')">Read</button>
-        <button class="update" onClick="onUpdateBook('${book.id}')">Update</button>
-        <button  class="delete" onclick="onRemoveBook(event,'${book.id}')">Delete</button>
-        </td>
-    </tr>
+    const strHTMLs =
+        ` <tr>
+            <th class="header">Title</th>
+            <th class="header">Price</th>
+            <th class="header">Rating</th>
+            <th class="header">Actions</th>
+
+        </tr>`+ books.map(book =>
+            `<tr class="table-row"> 
+            <td>${book.title}</td>
+            <td>${book.price}</td>
+            <td>${book.rating}</td>
+            <td class="actions">
+             <button class="read" onClick="onReadBook('${book.id}')">Read</button>
+             <button class="update" onClick="onUpdateBook('${book.id}')">Update</button>
+             <button  class="delete" onclick="onRemoveBook(event,'${book.id}')">Delete</button>
+             </td>
+        </tr>
     `).join('')
     elBooks.innerHTML = strHTMLs
 }
