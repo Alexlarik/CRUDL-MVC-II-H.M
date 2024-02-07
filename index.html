@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUDL</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="onInit()">
+    <h1>CRUDL: Book Shop</h1>
+
+    <section class="new-book">
+        <input type="text" placeholder="Add a new Book!">
+        <button onclick="onAddBook()">Add</button>
+
+    </section>
+    
+    <table class="book-list"></table>
+   
+    <dialog class="book-details">
+        <form method="dialog">
+            <h2>Book: <span></span></h2>
+            <pre></pre>
+            <button>X</button>
+        </form>
+    </dialog>
+
+
+    <script src="js/storage.service.js"></script>
+    <script src="js/books.service.js"></script>
+    <script src="js/books.controller.js"></script>
+</body>
+
+</html>

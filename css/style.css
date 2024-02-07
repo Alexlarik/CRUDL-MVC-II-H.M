@@ -1,0 +1,52 @@
+h1 {
+    text-align: center;
+}
+
+.book-list {
+    cursor: pointer;
+    border-style: solid;
+    border-color: lightgray;
+    margin: 10vh;
+    font-weight: bold;
+}
+
+.read {
+    background-color: dodgerblue;
+}
+
+.update {
+    background-color: rgb(255, 227, 103);
+}
+
+button {
+    cursor: pointer;
+}
+
+.header {
+    background-color: lightgray;
+}
+
+.delete {
+    background-color: orange;
+}
+
+table,
+th,
+td {
+    border: 1px solid gray;
+}
+
+.new-book {
+    background-color: lightblue;
+    padding: 5vh;
+
+}
+
+.table-row,
+button {
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
