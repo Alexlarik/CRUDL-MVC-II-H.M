@@ -1,5 +1,6 @@
 h1 {
     text-align: center;
+    color: whitesmoke;
 }
 
 .book-list {
@@ -50,6 +51,17 @@ button {
 .hidden {
     display: none;
 }
-.filter-by{
+
+.filter-by {
     padding: 15px;
+}
+
+body {
+    background-image: url('/img/cover.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.tbody {
+    background-color: white;
 }

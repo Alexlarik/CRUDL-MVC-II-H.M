@@ -3,7 +3,7 @@
 var gBooks
 const STORAGE_KEY = 'booksDB'
 
-function _createBook(title, price, rating = Math.floor(Math.random() * 6), img = '') {
+function _createBook(title, price, rating = Math.floor(Math.random() * 6), img = 'empty-image') {
     const book = {
         id: makeId(),
         title: title,
@@ -29,9 +29,9 @@ function _createBooks() {
     gBooks = loadFromStorage(STORAGE_KEY)
     if (!gBooks || !gBooks.length) {
         gBooks = [
-            _createBook('Nosferatu', 120, 5, 'imgUrl'),
-            _createBook('The Abyss', 80, 3, 'imgUrl'),
-            _createBook('Odyssey', 100, 4, 'imgUrl')
+            _createBook('Nosferatu', 120, 5, 'img/nosferatu.jpg'),
+            _createBook('The Abyss', 80, 3, 'img/abyss.jpg'),
+            _createBook('Odyssey', 100, 4, 'img/odyssey.jpg')
         ]
     }
     saveBooks()
