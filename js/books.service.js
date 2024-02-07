@@ -3,9 +3,9 @@
 var gBooks
 const STORAGE_KEY = 'booksDB'
 
-function _createBook(title, price, rating, img) {
+function _createBook(title, price, rating = Math.floor(Math.random() * 6), img) {
     const book = {
-        id: 'b' + Date.now() % 1000,
+        id: makeId(),
         title: title,
         price: price,
         rating: rating,
@@ -14,6 +14,17 @@ function _createBook(title, price, rating, img) {
     return book
 
 }
+
+function makeId(length = 6) {
+    const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+    var id = ''
+
+    for (var i = 0; i < length; i++) {
+        id += possible.charAt(Math.floor(Math.random() * possible.length))
+    }
+    return id
+}
+
 function _createBooks() {
     gBooks = loadFromStorage(STORAGE_KEY)
     if (!gBooks || !gBooks.length) {
@@ -23,11 +34,11 @@ function _createBooks() {
             _createBook('Odyssey', 80, 3, 'imgUrl')
         ]
     }
-    _saveBooks()
+    saveBooks()
 
 }
 
-function _saveBooks() {
+function saveBooks() {
     saveToStorage(STORAGE_KEY, gBooks)
 }
 
@@ -41,10 +52,10 @@ function removeBook(bookId) {
     gBooks.splice(idx, 1)
 }
 
-function addBook(title, price) {
-    gBooks.unshift(_createBook(title, price))
+function addBook(title, price, rating) {
+    gBooks.unshift(_createBook(title, price, rating))
 
-    _saveBooks()
+    saveBooks()
 
 }
 

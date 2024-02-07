@@ -1,5 +1,10 @@
 'use strict'
 
+const options = {
+    filterBy: {},
+    sortBy: {}
+}
+
 function onInit() {
     _createBooks()
     renderBooks()
@@ -8,14 +13,14 @@ function onInit() {
 function renderBooks() {
     const elBooks = document.querySelector('.book-list')
     const books = getBooks()
-    const strHTMLs =
-        ` <tr>
-            <th class="header">Title</th>
-            <th class="header">Price</th>
-            <th class="header">Rating</th>
-            <th class="header">Actions</th>
-
-        </tr>`+ books.map(book =>
+    const strHTMLs = `
+     <tr>
+     <th class="header">Title</th>
+     <th class="header">Price</th>
+     <th class="header">Rating</th>
+     <th class="header">Actions</th>
+     </tr>`
+        + books.map(book =>
             `<tr class="table-row"> 
             <td>${book.title}</td>
             <td>${book.price}</td>
@@ -27,6 +32,7 @@ function renderBooks() {
              </td>
         </tr>
     `).join('')
+
     elBooks.innerHTML = strHTMLs
 }
 
@@ -34,6 +40,7 @@ function onRemoveBook(ev, bookId) {
     ev.stopPropagation()
     console.log('Book Id: X ', bookId)
     removeBook(bookId)
+    saveBooks()
     renderBooks()
 }
 
@@ -50,6 +57,7 @@ function onUpdateBook(bookId) {
     console.log(bookId)
     var newPrice = +prompt('Enter a new Price: ')
     updatePrice(bookId, newPrice)
+    saveBooks()
     renderBooks()
 
 }
