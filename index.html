@@ -20,6 +20,17 @@
             </input>
 
         </div>
+        <div class="sort-by">
+            <select onchange=" onSetSortBy()">
+                <option value="">Select Sorting</option>
+                <option value="price">Price</option>
+                <option value="rating">Rating</option>
+            </select>
+            <label class="descend-check-box">
+                <span>Descending</span>
+                <input class="sort-desc" type="checkbox" oninput="onSetSortBy()">
+            </label>
+        </div>
 
     </section>
 

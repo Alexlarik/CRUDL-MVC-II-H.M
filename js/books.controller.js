@@ -1,7 +1,8 @@
 'use strict'
 
 const gOptions = {
-    filterBy: {}
+    filterBy: {},
+    sortBy: {}
 
 }
 
@@ -76,6 +77,20 @@ function onSetFilterBy() {
     console.log(gOptions.filterBy)
     renderBooks()
 
+}
 
+function onSetSortBy() {
+    const elSortBy = document.querySelector('.sort-by select')
+    const elDir = document.querySelector('.sort-by input')
 
+    const dir = elDir.checked ? -1 : 1
+    const sortBy = elSortBy.value
+
+    if (sortBy === 'price') {
+        gOptions.sortBy = { price: dir }
+    } else if (sortBy === 'rating') {
+        gOptions.sortBy = { rating: dir }
+    }
+    // gOptions.sortBy = {}
+    renderBooks()
 }

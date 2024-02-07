@@ -3,7 +3,7 @@
 var gBooks
 const STORAGE_KEY = 'booksDB'
 
-function _createBook(title, price, rating = Math.floor(Math.random() * 6), img) {
+function _createBook(title, price, rating = Math.floor(Math.random() * 6), img = '') {
     const book = {
         id: makeId(),
         title: title,
@@ -49,7 +49,13 @@ function getBooks(options) {
     if (options.filterBy.text) {
         const txt = options.filterBy.text.toLowerCase()
         books = gBooks.filter(book => book.title.toLowerCase().includes(txt))
+    }
+    if (options.sortBy.price) {
+        books.sort((book1, book2) => (book1.price - book2.price) * options.sortBy.price)
+    }
 
+    if (options.sortBy.rating) {
+        books.sort((book1, book2) => (book1.rating - book2.rating) * options.sortBy.rating)
     }
     return books
 }
