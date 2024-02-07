@@ -50,3 +50,6 @@ button {
 .hidden {
     display: none;
 }
+.filter-by{
+    padding: 15px;
+}

@@ -1,8 +1,8 @@
 'use strict'
 
-const options = {
-    filterBy: {},
-    sortBy: {}
+const gOptions = {
+    filterBy: {}
+
 }
 
 function onInit() {
@@ -11,16 +11,10 @@ function onInit() {
 }
 
 function renderBooks() {
-    const elBooks = document.querySelector('.book-list')
-    const books = getBooks()
-    const strHTMLs = `
-     <tr>
-     <th class="header">Title</th>
-     <th class="header">Price</th>
-     <th class="header">Rating</th>
-     <th class="header">Actions</th>
-     </tr>`
-        + books.map(book =>
+    const elBooks = document.querySelector('.tbody')
+    const books = getBooks(gOptions)
+    const strHTMLs =
+        books.map(book =>
             `<tr class="table-row"> 
             <td>${book.title}</td>
             <td>${book.price}</td>
@@ -73,4 +67,15 @@ function onReadBook(bookId) {
     elTXT.innerText = book.title
     elPRE.innerText = bookSTR
     elModal.showModal()
+}
+
+function onSetFilterBy() {
+    const elOption = document.querySelector('.filter-by input')
+
+    gOptions.filterBy.text = elOption.value
+    console.log(gOptions.filterBy)
+    renderBooks()
+
+
+
 }

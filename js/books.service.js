@@ -29,9 +29,9 @@ function _createBooks() {
     gBooks = loadFromStorage(STORAGE_KEY)
     if (!gBooks || !gBooks.length) {
         gBooks = [
-            _createBook('Nosferatu', 120, 3, 'imgUrl'),
-            _createBook('The Abyss', 100, 3, 'imgUrl'),
-            _createBook('Odyssey', 80, 3, 'imgUrl')
+            _createBook('Nosferatu', 120, 5, 'imgUrl'),
+            _createBook('The Abyss', 80, 3, 'imgUrl'),
+            _createBook('Odyssey', 100, 4, 'imgUrl')
         ]
     }
     saveBooks()
@@ -43,8 +43,15 @@ function saveBooks() {
 }
 
 
-function getBooks() {
-    return gBooks
+function getBooks(options) {
+    var books = gBooks
+
+    if (options.filterBy.text) {
+        const txt = options.filterBy.text.toLowerCase()
+        books = gBooks.filter(book => book.title.toLowerCase().includes(txt))
+
+    }
+    return books
 }
 
 function removeBook(bookId) {
@@ -70,8 +77,3 @@ function readBook(bookId) {
     return findBook
 
 }
-// const toRead = {
-//     id: 'b' + Date.now() % 1000,
-//     title,
-//     price: price,
-//     imgUrl: ''

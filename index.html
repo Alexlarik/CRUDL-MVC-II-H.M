@@ -15,24 +15,24 @@
         <input type="text" placeholder="Add a new Book!">
         <button onclick="onAddBook()">Add</button>
 
-        <div class="sort-by">
-            <select onchange="onSortBy()">
-                <option value="">Select Sorting</option>
-                <option type="number" value="Price">By Price</option>
-                <option type="number" value="Rating">By Rating</option>
-            </select>
+        <div class="filter-by">
+            <input type="text" placeholder="Search" oninput="onSetFilterBy()">
+            </input>
 
         </div>
 
     </section>
 
     <table class="book-list">
-        <!-- <tr>
-            <th class="header">Title</th>
-            <th class="header">Price</th>
-            <th class="header">Rating</th>
-            <th class="header">Actions</th>
-        </tr> -->
+        <thead>
+            <tr>
+                <th class="header">Title</th>
+                <th class="header">Price</th>
+                <th class="header">Rating</th>
+                <th class="header">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="tbody"></tbody>
     </table>
 
     <dialog class="book-details">
