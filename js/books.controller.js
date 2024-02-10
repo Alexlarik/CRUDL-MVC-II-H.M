@@ -96,3 +96,27 @@ function onSetSortBy() {
     // gOptions.sortBy = {}
     renderBooks()
 }
+
+function setQueryParams() {
+
+    const queryParams = new URLSearchParams()
+
+    queryParams.set('book', gOptions)
+
+    const sortKeys = Object.keys(gOptions)
+
+    if (sortKeys) {
+        queryParams.set('sortBy', sortKeys)
+        queryParams.set('sortBy', gOptions)
+    }
+
+    const newUrl =
+        window.location.protocol + "\\" +
+        window.location.host +
+        window.location.pathname + '?' + queryParams.toString()
+    console.log(newUrl)
+
+    window.history.pushState({ path: newUrl }, '', newUrl)
+
+
+}
