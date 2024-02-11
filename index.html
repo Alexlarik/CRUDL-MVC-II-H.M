@@ -29,7 +29,12 @@
             <label class="descend-check-box">
                 <span>Descending</span>
                 <input class="sort-desc" type="checkbox" oninput="onSetSortBy()">
+                <!-- <button title="Previous Page" onclick="onPreviousPage()">Previous Page</button> -->
+                <button title="Next Page" onclick="onNextPage()">Next Page</button>
             </label>
+            <div class="total-books">Total Books:
+
+            </div>
         </div>
 
     </section>
@@ -57,7 +62,7 @@
         </form>
     </dialog>
 
-    
+
     <script src="js/storage.service.js"></script>
     <script src="js/books.service.js"></script>
     <script src="js/books.controller.js"></script>

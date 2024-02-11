@@ -2,18 +2,22 @@
 
 const gOptions = {
     filterBy: {},
-    sortBy: {}
+    sortBy: {},
+    page: { idx: 0, size: 5 }
 
 }
 
 function onInit() {
     _createBooks()
     renderBooks()
+    getBooksCount()
 }
 
 function renderBooks() {
     const elBooks = document.querySelector('.tbody')
-    const books = getBooks(gOptions)
+    var books = getBooks(gOptions)
+    const starIdx = gOptions.page.idx * gOptions.page.size
+    books = books.slice(starIdx, starIdx + gOptions.page.size)
     const strHTMLs =
         books.map(book =>
             `<tr class="table-row"> 
@@ -37,6 +41,7 @@ function onRemoveBook(ev, bookId) {
     removeBook(bookId)
     saveBooks()
     renderBooks()
+    getBooksCount()
 }
 
 function onAddBook() {
@@ -46,6 +51,7 @@ function onAddBook() {
     addBook(elInput.value, price)
     elInput.value = ''
     renderBooks()
+    getBooksCount()
 }
 
 function onUpdateBook(bookId) {
@@ -96,6 +102,27 @@ function onSetSortBy() {
     // gOptions.sortBy = {}
     renderBooks()
 }
+
+function onNextPage() {
+
+    const carCount = getBooksCount()
+    if (carCount > (gOptions.page.idx + 1) * gOptions.page.size) {
+        gOptions.page.idx++
+    } else {
+        gOptions.page.idx = 0
+    }
+    renderBooks()
+}
+// function onPreviousPage() {
+
+//     const carCount = getBooksCount()
+//     if (carCount > (gOptions.page.idx ) * gOptions.page.size) {
+//         gOptions.page.idx--
+//     } else {
+//         gOptions.page.idx = 0
+//     }
+//     renderBooks()
+// }
 
 function setQueryParams() {
 

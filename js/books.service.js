@@ -83,3 +83,15 @@ function readBook(bookId) {
     return findBook
 
 }
+
+function getBooksCount() {
+    const elTotal = document.querySelector('.total-books')
+    const books = gBooks.length
+    const strHTML = `<div>Total Books: ${books}</div>
+`
+
+    elTotal.innerHTML = strHTML
+    renderBooks()
+    return books
+
+}
