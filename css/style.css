@@ -58,7 +58,7 @@ button {
 
 body {
     background-image: url('/img/cover.jpg');
-    background-size: cover;
+    background-size: 2500px;
     background-repeat: no-repeat;
 }
 

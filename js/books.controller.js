@@ -83,6 +83,7 @@ function onSetFilterBy() {
 
     gOptions.filterBy.text = elOption.value
     console.log(gOptions.filterBy)
+    setQueryParams()
     renderBooks()
 
 }
@@ -100,6 +101,7 @@ function onSetSortBy() {
         gOptions.sortBy = { rating: dir }
     }
     // gOptions.sortBy = {}
+    setQueryParams()
     renderBooks()
 }
 
@@ -111,6 +113,7 @@ function onNextPage() {
     } else {
         gOptions.page.idx = 0
     }
+    setQueryParams()
     renderBooks()
 }
 // function onPreviousPage() {
@@ -128,17 +131,23 @@ function setQueryParams() {
 
     const queryParams = new URLSearchParams()
 
-    queryParams.set('book', gOptions)
+    // queryParams.set('book', gBooks.id)
 
     const sortKeys = Object.keys(gOptions)
+    console.log(queryParams)
+    console.log(sortKeys)
 
-    if (sortKeys) {
-        queryParams.set('sortBy', sortKeys)
-        queryParams.set('sortBy', gOptions)
+    // queryParams.set('sortBy', sortKeys)
+    if (sortKeys.length) {
+        queryParams.set('sortDir', gOptions.checked ? 1 : -1)
+    }
+    if (gOptions.page) {
+        queryParams.set('sortBy.page', gOptions.page.idx)
+        queryParams.set('sortSize', gOptions.page.size)
     }
 
     const newUrl =
-        window.location.protocol + "\\" +
+        window.location.protocol + "//" +
         window.location.host +
         window.location.pathname + '?' + queryParams.toString()
     console.log(newUrl)
