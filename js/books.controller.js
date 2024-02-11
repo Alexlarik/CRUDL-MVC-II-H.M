@@ -11,6 +11,7 @@ function onInit() {
     _createBooks()
     renderBooks()
     getBooksCount()
+    // doTrans()
 }
 
 function renderBooks() {
@@ -25,9 +26,9 @@ function renderBooks() {
             <td>${book.price}</td>
             <td>${book.rating}</td>
             <td class="actions">
-             <button class="read" onClick="onReadBook('${book.id}')">Read</button>
-             <button class="update" onClick="onUpdateBook('${book.id}')">Update</button>
-             <button  class="delete" onclick="onRemoveBook(event,'${book.id}')">Delete</button>
+             <button data-trans="read" class="read" onClick="onReadBook('${book.id}')">Read</button>
+             <button data-trans="update" class="update" onClick="onUpdateBook('${book.id}')">Update</button>
+             <button data-trans="delete"  class="delete" onclick="onRemoveBook(event,'${book.id}')">Delete</button>
              </td>
         </tr>
     `).join('')
@@ -154,5 +155,14 @@ function setQueryParams() {
 
     window.history.pushState({ path: newUrl }, '', newUrl)
 
+
+}
+
+function onSetLang(lang) {
+    setLang(lang)
+    if (lang === 'he') document.body.classList.add('rtl')
+    else document.body.classList.remove('rtl')
+    renderBooks()
+    doTrans()
 
 }

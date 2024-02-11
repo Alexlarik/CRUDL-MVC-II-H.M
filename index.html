@@ -9,30 +9,38 @@
 </head>
 
 <body onload="onInit()">
-    <h1>CRUDL: Book Shop</h1>
+    <h1 data-trans="title-header">CRUDL: Book Shop</h1>
+    <div>
+        <!-- <h4 data-trans="subtitle">MVC - Model-View-Controller</h4> -->
+        <select onchange="onSetLang(this.value)">
+            <option value="en">English</option>
+            <option value="he">עברית</option>
+        </select>
+    </div>
+
 
     <section class="new-book">
-        <input type="text" placeholder="Add a new Book!">
-        <button onclick="onAddBook()">Add</button>
+        <input data-trans="add-txt-placeholder" type="text" placeholder="Add a new Book!">
+        <button data-trans="add" data-trans="add" onclick="onAddBook()">Add</button>
 
         <div class="filter-by">
-            <input type="text" placeholder="Search" oninput="onSetFilterBy()">
+            <input data-trans="Search" type="text" placeholder="Search" oninput="onSetFilterBy()">
             </input>
 
         </div>
         <div class="sort-by">
             <select onchange=" onSetSortBy()">
-                <option value="">Select Sorting</option>
-                <option value="price">Price</option>
-                <option value="rating">Rating</option>
+                <option data-trans="select-sorting" value="">Select Sorting</option>
+                <option data-trans="sort-price" class="sort-price" value="price">Price</option>
+                <option data-trans="sort-rating" class="sort-rating" value="rating">Rating</option>
             </select>
             <label class="descend-check-box">
-                <span>Descending</span>
+                <span data-trans="descend-check-box">Descending</span>
                 <input class="sort-desc" type="checkbox" oninput="onSetSortBy()">
                 <!-- <button title="Previous Page" onclick="onPreviousPage()">Previous Page</button> -->
-                <button title="Next Page" onclick="onNextPage()">Next Page</button>
+                <button data-trans="next-page" title="Next Page" onclick="onNextPage()">Next Page</button>
             </label>
-            <div class="total-books">Total Books:
+            <div data-trans="total-books" class="total-books">Total Books:
 
             </div>
         </div>
@@ -42,10 +50,10 @@
     <table class="book-list">
         <thead>
             <tr>
-                <th class="header">Title</th>
-                <th class="header">Price</th>
-                <th class="header">Rating</th>
-                <th class="header">Actions</th>
+                <th data-trans="title" class="header">Title</th>
+                <th data-trans="price" class="header">Price</th>
+                <th data-trans="rating" class="header">Rating</th>
+                <th data-trans="actions" class="header">Actions</th>
             </tr>
         </thead>
         <tbody class="tbody"></tbody>
@@ -66,6 +74,7 @@
     <script src="js/storage.service.js"></script>
     <script src="js/books.service.js"></script>
     <script src="js/books.controller.js"></script>
+    <script src="js/i18n.service.js"></script>
 </body>
 
 </html>
